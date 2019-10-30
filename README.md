@@ -190,5 +190,240 @@ namespace Klasy_21._10
     }
 }
 
+30.10.2019
+using System;
+
+namespace _30._10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Car car1 = new Car("Honda", "Civic");
+            car1.Ride();
+            Bicycle bicycle1 = new Bicycle("Thunder", 3000);
+            bicycle1.Ride();
+            Console.ReadKey();
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _30._10
+{
+    interface IRideable
+    {
+        void Ride();
+        
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _30._10
+{
+    class Vehicle
+    {
+
+    }
+
+    class Car : Vehicle, IRideable
+    {
+        public void Ride()
+        {
+            Console.Write("Jadę samochodem ");
+            Console.WriteLine("{0} {1}", marka, model);
+        }
+        private string marka;
+        private string model;
+
+        public Car(string marka, string model)
+        {
+            this.marka = marka;
+            this.model = model;
+        }
+
+    }
+
+    class Bicycle : Vehicle, IRideable
+    {
+        public void Ride()
+        {
+            Console.Write("Jadę rowerem ");
+            Console.WriteLine("{0} {1}", marka, model);
+        }
+        private string marka;
+        private int model;
+
+        public Bicycle(string marka, int model)
+        {
+            this.marka = marka;
+            this.model = model;
+        }
+    }
+}
+
+
+
+
+
+using System;
+
+namespace KolejneZadanie
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Test obiekt1 = new Test();
+            Test obiekt2 = new Test();
+            Test obiekt3 = new Test();
+            obiekt1.liczba = 255;
+            obiekt1.poleTestowe.slowo = "słowo";
+            obiekt2 = obiekt1;
+            obiekt3 = (Test)obiekt1.Clone();
+            obiekt1.liczba = 347;
+            obiekt1.poleTestowe.slowo = "kaczka";
+            Console.WriteLine(obiekt1.liczba);
+            Console.WriteLine(obiekt2.liczba);
+            Console.WriteLine(obiekt3.liczba);
+            Console.ReadKey();
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace KolejneZadanie
+{
+    class Test2
+    {
+        public string slowo;
+
+        public Test2(string slowo)
+        {
+            this.slowo = slowo;
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace KolejneZadanie
+{
+    class Test : IClonable
+    {
+        public int liczba;
+        public Object Clone()
+        {
+            return MemberwiseClone();
+        }
+        public Test2 poleTestowe;
+
+        public Test(int liczba, Test2 poleTestowe)
+        {
+            this.liczba = liczba;
+            this.poleTestowe = poleTestowe;
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace KolejneZadanie
+{
+    interface IClonable
+    {
+        
+    }
+}
+using System;
+
+namespace Orkiestra
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Osoba Uczen = new Osoba("Marek");
+            ISkrzypek Uczen2 = new Osoba("Grażynka");
+            IGitarzysta Uczen3 = new Osoba("Janusz");
+            Uczen.PrzedstawSie();
+            Uczen.Graj();
+            Console.Write("Jestem Grażynka i ");
+            Uczen2.Graj();
+            Console.Write("Jestem Janusz i ");
+            Uczen3.Graj();
+            
+            Console.ReadKey();
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Orkiestra
+{
+    class Osoba : IGitarzysta, ISkrzypek
+    {
+        private string imie;
+
+        public Osoba(string imie)
+        {
+            this.imie = imie;
+        }
+        public void PrzedstawSie()
+        {
+            Console.Write("Jestem {0} i ", imie);
+        }
+        public void Graj()
+        {
+            Console.WriteLine("gram, ale nie wiem na czym");
+            
+        }
+        void IGitarzysta.Graj()
+        {
+            Console.WriteLine("gram na gitarze");
+        }
+        void ISkrzypek.Graj()
+        {
+            Console.WriteLine("gram na skrzypcach");
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Orkiestra
+{
+    interface ISkrzypek
+    {
+        void Graj();
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Orkiestra
+{
+    public interface IGitarzysta
+    {
+        void Graj();
+    }
+}
+
+
+
+
+
 
 
