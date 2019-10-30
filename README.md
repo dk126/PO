@@ -65,3 +65,129 @@ namespace _11._10._19_1_
     }
 }
 https://github.com/pio1755/obiektowka?fbclid=IwAR0qR6ojAONW3E5d5YFNnn5gOZG7hub55aqdOAp1HvKKW8Sst5Ihh1gj3GU
+KLASA OSOBA I STUDENT:
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Klasy_21._10
+{
+    class Osoba
+    {
+        protected string imie;
+        protected string nazwisko;
+        protected int rokUrodzenia;
+        private string miejsceZamieszkania;
+
+        public Osoba(string imie, string nazwisko, int rokUrodzenia, string miejsceZamieszkania)
+        {
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+            this.rokUrodzenia = rokUrodzenia;
+            this.miejsceZamieszkania = miejsceZamieszkania;
+         
+        }
+
+        /*public string Imie
+        {
+            get { return imie; }
+            set { imie = value; }
+        }
+        public string Nazwisko
+        {
+            get { return nazwisko; }
+            set { nazwisko = value; }
+        }
+        public int RokUrodzenia
+        {
+            get { return rokUrodzenia; }
+            set { rokUrodzenia = value; }
+        }
+        */
+        public void wypiszOsoba()
+        {
+            Console.WriteLine("\r\n{0} {1} \r\nRok urodzenia: {2}, Miejsce zamieszkania: {3}", imie, nazwisko, rokUrodzenia, miejsceZamieszkania);
+        }
+        public void ObliczWiek()
+        {
+            int wiek = DateTime.Now.Year - this.rokUrodzenia;
+            Console.WriteLine("Wiek: {0}", wiek);
+        }
+    }
+
+    class Student : Osoba
+    {
+        public int rok;
+        public int numerGrupy;
+        public int numerAlbumu;
+
+        public Student(string imie, string nazwisko, int rokUrodzenia, string miejsceZamieszkania, int rok, int numerGrupy, int numerAlbumu) : base(imie, nazwisko, rokUrodzenia, miejsceZamieszkania)
+        {
+            this.rok = rok;
+            this.numerGrupy = numerGrupy;
+            this.numerAlbumu = numerAlbumu;
+        }
+        public void wypiszStudent()
+        {
+            base.wypiszOsoba();
+            Console.WriteLine("Rok studiów: {0} Numer grupy: {1}, \r\nNumer albumu: {2}", rok, numerGrupy, numerAlbumu);
+        }
+    }
+
+    class StudentPierwszegoRoku : Student
+    {
+        public StudentPierwszegoRoku(string imie, string nazwisko, int rokUrodzenia, string miejsceZamieszkania, int rok, int numerGrupy, int numerAlbumu) : base(imie, nazwisko, rokUrodzenia, miejsceZamieszkania, rok, numerGrupy, numerAlbumu)
+        {         
+            
+        }
+        public void wypiszStudent1()
+        {
+            base.wypiszStudent();
+        }
+       
+    }
+
+}
+
+
+
+
+
+
+using System;
+
+namespace Klasy_21._10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Osoba Marek = new Osoba("Marek", "Nowak", 1987, "Pasłęk");
+            Marek.wypiszOsoba();
+            Marek.ObliczWiek();
+
+            Osoba Gabrysia = new Osoba("Gabriela", "Nowak", 1989, "Pasłęk");
+            Gabrysia.wypiszOsoba();
+            Gabrysia.ObliczWiek();
+
+            Student Piotr = new Student("Piotr", "Kowalczyk", 1995, "Olsztyn", 3, 4, 143546);
+            Piotr.wypiszStudent();
+            Piotr.ObliczWiek();
+
+            StudentPierwszegoRoku Kasia = new StudentPierwszegoRoku("Katarzyna", "Deptak", 1998, "Warszawa", 1, 5, 127865);
+            Kasia.wypiszStudent1();
+            Kasia.ObliczWiek();
+
+            Marek = Piotr;
+            Kasia = Gabrysia;
+
+
+            Console.ReadKey();
+        }
+       
+    }
+}
+
+
+
