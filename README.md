@@ -421,8 +421,151 @@ namespace Orkiestra
     }
 }
 
+6.11
 
 
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _6._11
+{
+    class Pracownik
+    {
+        public string imie { get; private set; }
+        public string nazwisko { get; private set; }
+        public int wiek{ get; private set; }
+
+        public Pracownik(string imie, string nazwisko, int wiek)
+        {
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+            this.wiek = wiek;
+        }
+
+        public virtual void Pracuj()
+        {
+            Console.WriteLine("pracownik pracuje");
+        }
+    }
+    class Programista : Pracownik
+    {
+        public Programista(string imie, string nazwisko, int wiek) : base(imie, nazwisko, wiek)
+        {
+        }
+
+        public override void Pracuj()
+        {
+            base.Pracuj();
+            Console.WriteLine("Obowiazki programisty");
+        }
+    }
+    class Projektant : Pracownik
+    {
+        public Projektant(string imie, string nazwisko, int wiek) : base(imie, nazwisko, wiek)
+        {
+        }
+
+        public override void Pracuj()
+        {
+            Console.WriteLine("Projektant pracuje");
+        }
+    }
+    class Księgowy : Pracownik
+    {
+        public Księgowy(string imie, string nazwisko, int wiek) : base(imie, nazwisko, wiek)
+        {
+        }
+
+        public override void Pracuj()
+        {
+            Console.WriteLine("Księgowy pracuje");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+
+namespace _6._11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Pracownik p = new Programista();
+            //p.Pracuj();
+            
+            List<Pracownik> EmployeeList = new List<Pracownik>();
+            EmployeeList.Add(new Programista("Staszek", "Dzięcioł", 22));
+            EmployeeList.Add(new Projektant("Tomek", "Niemasz", 25));
+            EmployeeList.Add(new Księgowy("Krystian", "Gołąb", 24));
+           
+            foreach (Pracownik Employee in EmployeeList)
+            {
+                Console.WriteLine("Imie i nazwisko: {0} {1} Wiek: {2}", Employee.imie, Employee.nazwisko, Employee.wiek);
+            }
+            Console.WriteLine(EmployeeList.Count); //zlicza ilosc obiektow na liscie
+
+            Console.ReadKey();
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _6._11_2_
+{
+    abstract public class Figura
+    {
+        protected int iloscKrawedzi;
+        protected int a;
+        protected int b;
+
+        protected Figura(int iloscKrawedzi, int a, int b)
+        {
+            this.iloscKrawedzi = iloscKrawedzi;
+            this.a = a;
+            this.b = b;
+        }
+        public abstract int Pole();
+        
+    }
+
+    internal class Kwadrat : Figura
+    {
+        public Kwadrat(int iloscKrawedzi, int a, int b) : base(iloscKrawedzi, a, b)
+        {
+        }
+
+        override public int Pole() { return a * a; }
+    }
+
+    internal class Trójkąt : Figura
+    {
+        public Trójkąt(int iloscKrawedzi, int a, int b) : base(iloscKrawedzi, a, b)
+        {
+        }
+
+        override public int Pole() { return 1 / 2 * a * b; }
+    }
+}
+
+using System;
+
+namespace _6._11_2_
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Kwadrat kwadrat = new Kwadrat(0, 3, 0);
+            Console.WriteLine(kwadrat.Pole());
+            Console.ReadKey();
+        }
+    }
+}
 
 
 
