@@ -1,28 +1,104 @@
 ﻿using System;
-using System.Threading;
+using System.Runtime.Serialization;
 
-namespace nowy_13._11
+namespace _13._11
 {
     class Program
     {
-        static void Licz()
+        public class NaszWyjatekExeption : System.Exception
         {
-            for (int i = 1; i <= 1000; i++)
+            public NaszWyjatekExeption()
             {
-                Console.WriteLine("wątek: " + i);
+                
+            }
+
+            public NaszWyjatekExeption(string message) : base(message)
+            {
+                message = "Wszystko robisz źle";
+                Console.WriteLine(message);
+            }
+
+            public NaszWyjatekExeption(string message, Exception innerException) : base(message, innerException)
+            {
+            }
+
+            public NaszWyjatekExeption(SerializationInfo info, StreamingContext context) : base(info, context)
+            {
             }
         }
         static void Main(string[] args)
         {
-            Thread thr = new Thread(Licz);
-            thr.Start();
-            for (int i = 1; i <= 1000; i++)
+            try
             {
-                Console.WriteLine("program1: " + i);
+                Console.WriteLine("Podaj liczbe, ktorą chcesz podzielić: ");
+                int a = int.Parse(Console.ReadLine());
+                Console.WriteLine("Podaj liczbe, przez jaką chcesz podzielić: ");
+                int b = int.Parse(Console.ReadLine());
+                var dzielenie = a / b;
+                Console.WriteLine(dzielenie);
             }
-            Console.WriteLine();
-           
+
+            catch (FormatException fEx)
+            {
+                Console.WriteLine(fEx.Message);
+            }
+            catch (OverflowException OverEx)
+            {
+                Console.WriteLine(OverEx.Message);
+            }
+            catch (ArithmeticException ArgEx)
+            {
+                Console.WriteLine(ArgEx.Message);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Coś poszło nie tak:(");
+            }
+            int aa = 15;
+            try
+            {
+                string a = Console.ReadLine();
+                aa = int.Parse(a);
+            }
+            catch
+            {
+                Console.WriteLine("Nie zmieniłeś zmiennej- Błąd");
+            }
+            finally
+            {
+                Console.WriteLine(aa);
+            }
+            /*
+            StackOverflowException - Wyjątek, który jest generowany w przypadku 
+            przepełnienia stosu wykonywania, ponieważ zawiera zbyt wiele wywołań 
+            metod zagnieżdżonych.
+
+            NullReferenceException - Wyjątek, który jest generowany, gdy istnieje 
+            próba odwołująca się do odwołania do obiektu o wartości null.
+
+            FileNotFoundException - Wyjątek, który jest zgłaszany, gdy nie powiedzie się 
+            próba uzyskania dostępu do pliku, który nie istnieje na dysku.
+
+            AccessViolationException - Wyjątek, który jest zgłaszany, gdy podjęto próbę 
+            odczytu lub zapisu chronionej pamięci.
+
+            IndexOutOfRangeException - Wyjątek, który jest generowany, gdy zostanie 
+            podjęta próba uzyskania dostępu do elementu tablicy lub kolekcji z indeksem, 
+            który znajduje się poza granicami.
+            */
+            try
+            {
+                Metoda23();
+            }
+            catch(NotImplementedException NotImpEx)
+            {
+                Console.WriteLine(NotImpEx.Message);
+            }
             Console.ReadKey();
+        }
+        static void Metoda23()
+        {
+            throw new NotImplementedException();
         }
     }
 }
