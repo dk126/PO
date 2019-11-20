@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _20._11
+{
+    public class Osoba
+    {
+        public string imie { get; set; }
+        public int wiek { get; set; }
+
+        public Osoba(string imie, int wiek)
+        {
+            this.imie = imie;
+            this.wiek = wiek;
+        }
+        public Osoba()
+        {
+
+        }
+        public void PodajImie()
+        {
+            Console.WriteLine("Imie: {0}", imie);
+        }
+        public void PodajWiek()
+        {
+            Console.WriteLine("Wiek: {0}", wiek);
+        }
+        public override string ToString()
+        {
+            return "Imie: " + imie + "   Wiek: " + wiek;
+        }
+    }
+
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _20._11
+{
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Osoba os1 = new Osoba("Krzysiek", 19);
+            os1.PodajImie();
+            os1.PodajWiek();
+            Stack<int> numbers = new Stack<int>();
+            numbers.Push(1);
+            numbers.Push(2);
+            numbers.Push(3);
+            foreach(int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine("Popping: {0}", numbers.Pop());
+            Console.WriteLine("Peek at next item to destack: {0}", numbers.Peek());
+            Console.WriteLine("Popping: {0}", numbers.Pop());
+            
+            Stack<string> imiona = new Stack<string>();
+            imiona.Push("Kasia");
+            imiona.Push("Basia");
+            foreach(string imię in imiona)
+            {
+                Console.WriteLine(imię);
+            }
+         
+            List<Osoba> osoba = new List<Osoba>();
+            osoba.Add(new Osoba() { imie = "Waldemar", wiek = 52 });
+            osoba.Add(new Osoba() { imie = "Franciszek", wiek = 34 });
+            foreach(Osoba osoba1 in osoba)
+            {
+                Console.WriteLine(osoba1);
+            }
+            Console.WriteLine("    Capacity: {0}", osoba.Capacity);
+            osoba.Reverse();
+            Console.WriteLine();
+            foreach (Osoba osoba1 in osoba)
+            {
+                Console.WriteLine(osoba1);
+            }
+            Console.ReadKey();
+        }
+    }
+}
