@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace _27._11
+namespace _27._11_2_
 {
     /// <summary>
     /// Logika interakcji dla klasy App.xaml

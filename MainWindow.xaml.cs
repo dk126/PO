@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace _27._11
+namespace _27._11_2_
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
@@ -24,20 +24,39 @@ namespace _27._11
         {
             InitializeComponent();
         }
-        public string imie;        
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public double liczba1;
+        public double liczba2;
+        public double wynik;
+        private void ButtonDodawanie_Click(object sender, RoutedEventArgs e)
         {
-            imie = MyTextBoxPobieranie.Text;
-            //MessageBox.Show("Cześć " + this.imie);            
-            if (imie != "Wpisz imię" && imie != "")
-                MyTextBoxWyświetlanie.Text = "Cześć " + this.imie;
-            else
-                MessageBox.Show("Coś poszło nie tak:(");
+            liczba1 = Convert.ToDouble(ButtonLiczba1.Text);
+            liczba2 = Convert.ToDouble(ButtonLiczba2.Text);
+            wynik = liczba1 + liczba2;
+            ButtonWynik.Text = Convert.ToString(wynik);
         }
 
-        private void ButtonWyczysc_Click(object sender, RoutedEventArgs e)
+        private void ButtonOdejmowanie_Click(object sender, RoutedEventArgs e)
         {
-            MyTextBoxWyświetlanie.Clear();
+            liczba1 = Convert.ToDouble(ButtonLiczba1.Text);
+            liczba2 = Convert.ToDouble(ButtonLiczba2.Text);
+            wynik = liczba1 - liczba2;
+            ButtonWynik.Text = Convert.ToString(wynik);
+        }
+
+        private void ButtonMnozenie_Click(object sender, RoutedEventArgs e)
+        {
+            liczba1 = Convert.ToDouble(ButtonLiczba1.Text);
+            liczba2 = Convert.ToDouble(ButtonLiczba2.Text);
+            wynik = liczba1 * liczba2;
+            ButtonWynik.Text = Convert.ToString(wynik);
+        }
+
+        private void ButtonDzielenie_Click(object sender, RoutedEventArgs e)
+        {
+            liczba1 = Convert.ToDouble(ButtonLiczba1.Text);
+            liczba2 = Convert.ToDouble(ButtonLiczba2.Text);
+            wynik = liczba1 / liczba2;
+            ButtonWynik.Text = Convert.ToString(wynik);
         }
     }
 }
